@@ -6,23 +6,22 @@
 #include <stack>
 #include <queue>
 
-template<class ItemType>
 class Graph{
     public:
         Graph();
 
-        void addEdge(int from, int to, ItemType weight);
+        void addEdge(int from, int to, int weight);
 
-        bool bfs(const std::vector<std::vector<ItemType>> &residualGraph, int source,
+        bool bfs(const std::vector<std::vector<int>> &residualGraph, int source,
                     int sink, std::vector<int> &parent) const;
 
     private:
         struct Edges{
             int to;
-            ItemType weight;
+            int weight;
         };
 
-        std::vector<std::vector<Edge>> adjList;
+        std::vector<std::vector<Edges>> adjList;
         int numVertices;
 };
 

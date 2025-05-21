@@ -1,18 +1,15 @@
 #include "Queue.hpp"
 
 //Initialize the queue
-template<class ItemType>
-Queue<ItemType>::Queue() : front(nullptr), back(nullptr), size(0) { }
+Queue::Queue() : front(nullptr), back(nullptr), size(0) { }
 
 //Check wheter the queue is empty
-template<class ItemType>
-bool Queue<ItemType>::isEmpty() const {
+bool Queue::isEmpty() const {
     return front == nullptr;
 }
 
 //Add item back to the queue
-template<class ItemType>
-void Queue<ItemType>::enqueue(const ItemType& newItem) {
+void Queue::enqueue(const int& newItem) {
     Node *newNode = new Node;
     newNode -> data = newItem;
     
@@ -27,8 +24,8 @@ void Queue<ItemType>::enqueue(const ItemType& newItem) {
 }
 
 //Remove the front node from the queue
-template<class ItemType>
-void Queue<ItemType>::dequeue() {
+
+void Queue::dequeue() {
     if (isEmpty()) {
         throw std::runtime_error("Queue is empty");
     }
@@ -45,8 +42,8 @@ void Queue<ItemType>::dequeue() {
 }
 
 //Retrieve the front data from the queue
-template<class ItemType>
-ItemType& Queue<ItemType>::getFront() {
+
+int& Queue::getFront() {
     if (isEmpty()) {
         throw std::runtime_error("Queue is empty");
     }
@@ -55,22 +52,22 @@ ItemType& Queue<ItemType>::getFront() {
 }
 
 //Return the size of the queue
-template<class ItemType>
-int Queue<ItemType>::getSize() const {
+
+int Queue::getSize() const {
     return size;
 }
 
 //Add a portal into the cooldown queue when used
-template<class ItemType>
-void Queue<ItemType>::enterCooldownQueue(const ItemType& cooldownPortal) {
+
+void Queue::enterCooldownQueue(const int& cooldownPortal) {
     enqueue(cooldownPortal);
 }
 
 //Check all portals' cooldown and decrement 1
 //if cooldown eaquals to the zero after decrement remove from the queue
 //else add into the back of queue
-template<class ItemType>
-void Queue<ItemType>::checkCooldowns() {
+/*
+void Queue::checkCooldowns() {
     if (isEmpty()) {
         throw std::runtime_error("Queue is empty");
     }
@@ -78,7 +75,7 @@ void Queue<ItemType>::checkCooldowns() {
     int checkSize = getSize();
     
     for (int check = 0; check < checkSize; check++) {
-        ItemType& currentPortal = getFront();
+        int& currentPortal = getFront();
         currentPortal.cooldown--;
 
         if (currentPortal.cooldown != 0) 
@@ -87,3 +84,4 @@ void Queue<ItemType>::checkCooldowns() {
         dequeue();
     }
 }
+*/
