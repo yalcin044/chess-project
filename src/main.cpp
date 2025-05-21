@@ -1,4 +1,6 @@
 #include "ConfigReader.hpp"
+#include "../chess_board/ChessBoard.hpp"
+#include "../pieces/Pieces.hpp"
 #include <iostream>
 #include <string>
 
@@ -129,5 +131,8 @@ int main(int argc, char *argv[]) {
     std::cout << std::endl;
   }
 
+  std::cout << "\n";
+  ChessBoard chess(config);
+  chess.getBoard();
   return 0;
 }

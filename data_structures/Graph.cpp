@@ -1,12 +1,8 @@
 #include "Graph.hpp"
 
-
-template<class ItemType>
-Graph<class ItemType>::Graph(){ }
+Graph::Graph(){ }
  
-
-template <typename T>
-bool Graph<T>::bfs(const std::vector<std::vector<T>> &residualGraph, int source,
+bool Graph::bfs(const std::vector<std::vector<int>> &residualGraph, int source,
                    int sink, std::vector<int> &parent) const {
   
     std::vector<bool> visited(numVertices, false);
@@ -16,7 +12,7 @@ bool Graph<T>::bfs(const std::vector<std::vector<T>> &residualGraph, int source,
     visited[source] = true;
     parent[source] = -1;
 
-    while (!q.empty()) {
+    while (!queue.empty()) {
         int u = queue.front();
         queue.pop();
 
@@ -31,9 +27,7 @@ bool Graph<T>::bfs(const std::vector<std::vector<T>> &residualGraph, int source,
 
     return visited[sink];
 }
-
-
-template<class ItemType> 
-void Graph<ItemType>::addEdge(int from, int to, ItemType weight) {
+ 
+void Graph::addEdge(int from, int to, int weight) {
     adjList[from].push_back({to, weight});
 }

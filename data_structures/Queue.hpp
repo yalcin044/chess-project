@@ -3,7 +3,6 @@
 
 #include <iostream>
 
-template<class ItemType>
 class Queue {
     public:
         //Queue constructor
@@ -11,20 +10,20 @@ class Queue {
         
         //Standart queue operations 
         bool isEmpty() const;
-        void enqueue(const ItemType& newItem);
+        void enqueue(const int& newItem);
         void dequeue();
-        ItemType& getFront() ;
+        int& getFront();
         int getSize() const;
         void clear();
 
         //Some cooldown operations for portals
-        void enterCooldownQueue(const ItemType& cooldownPortal);
-        void checkCooldowns();
+        void enterCooldownQueue(const int& cooldownPortal);
+        //void checkCooldowns();
     
     private:
         struct Node {
             Node *next;
-            ItemType data;
+            int data;
         };
         
         Node *front;

@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++20 -Wall -Wextra -pedantic
-INCLUDES = -I./include -I./third_party
+INCLUDES = -I./include -I./third_party -I./third_party/nlohmann
 SRC_DIR = src
 OBJ_DIR = obj
 BIN_DIR = bin
@@ -14,7 +14,7 @@ CYAN = \033[0;36m
 RESET = \033[0m
 
 # Source files
-SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
+SOURCES = $(wildcard $(SRC_DIR)/*.cpp) $(wildcard chess_board/*.cpp) $(wildcard pieces/*.cpp) $(wildcard data_structures/*.cpp)
 OBJECTS = $(SOURCES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 EXECUTABLE = $(BIN_DIR)/chess_game
 

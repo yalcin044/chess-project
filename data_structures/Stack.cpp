@@ -1,18 +1,16 @@
 #include "Stack.hpp"
 
 //Initialize the stack
-template<class ItemType>
-Stack<ItemType>::Stack() : top(nullptr), size(0) { }
+
+Stack::Stack() : top(nullptr), size(0) { }
 
 //Check wheter the stack is empty
-template<class ItemType>
-bool Stack<ItemType>::isEmpty() const {
+bool Stack::isEmpty() const {
     return top == nullptr;
 }
 
 //Add item top to the stack
-template<class ItemType>
-void Stack<ItemType>::push(const ItemType& newItem) {
+void Stack::push(const int& newItem) {
     Node *newNode = new Node;
     newNode -> data = newItem;
     newNode -> next = top;
@@ -21,8 +19,7 @@ void Stack<ItemType>::push(const ItemType& newItem) {
 }
 
 //Remove the top node from the stack
-template<class ItemType>
-void Stack<ItemType>::pop() {
+void Stack::pop() {
     if (isEmpty()) {
         throw std::runtime_error("Stack is empty");
     }
@@ -35,8 +32,7 @@ void Stack<ItemType>::pop() {
 }
 
 //Retrieve the top data from the stack
-template<class ItemType>
-ItemType& Stack<ItemType>::getTop() {
+int& Stack::getTop() {
     if (isEmpty()) {
         throw std::runtime_error("Stack is empty");
     }
@@ -45,32 +41,28 @@ ItemType& Stack<ItemType>::getTop() {
 }
 
 //Return the size of the stack
-template<class ItemType>
-int Stack<ItemType>::getSize() const {
+int Stack::getSize() const {
     return size;
 }
 
 //Save the last move into the stack
-template<class ItemType>
-void Stack<ItemType>::moveRecord(const ItemType& record) {
+void Stack::moveRecord(const int& record) {
     push(record);
 }
 
 //Undo the last move and remove from the stack
-template<class ItemType>
-ItemType Stack<ItemType>::moveUndo() {
+int Stack::moveUndo() {
     if (isEmpty()) {
         throw std::runtime_error("Stack is empty");
     }
 
-    ItemType lastMove = getTop();
+    int lastMove = getTop();
     pop();
     return lastMove;
 }
 
 //Retrieve the last move from the stack
-template<class ItemType>
-ItemType& Stack<ItemType>::getLastMove() {
+int& Stack::getLastMove() {
     if (isEmpty()) {
         throw std::runtime_error("Stack is empty");
     }

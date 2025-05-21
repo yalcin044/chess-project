@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-template<class ItemType>
+
 class Stack{
     public:
         //Stack constructor
@@ -11,21 +11,21 @@ class Stack{
 
         //Standart stack operations
         bool isEmpty() const;
-        void push(const ItemType& newItem);
+        void push(const int& newItem);
         void pop();
-        ItemType& getTop();
+        int& getTop();
         int getSize() const;
         void clear();
 
         //Some move operations for the chess pieces
-        void moveRecord(const ItemType& record);
-        ItemType moveUndo();
-        ItemType& getLastMove();
+        void moveRecord(const int& record);
+        int moveUndo();
+        int& getLastMove();
 
     private:
         struct Node{
             Node *next;
-            ItemType data;
+            int data;
         };
         
         Node *top;   

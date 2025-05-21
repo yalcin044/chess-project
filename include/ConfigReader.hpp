@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <nlohmann/json.hpp>
+#include "../third_party/nlohmann/json.hpp"
 #include <string>
 #include <unordered_map>
 #include <vector>
