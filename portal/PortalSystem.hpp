@@ -30,7 +30,7 @@ class PortalSystem {
     private:
         std::unordered_map<std::string, PortalState> m_portals;
         Queue m_cooldownQueue;
-        ChessBoard& m_board; // ChessBoard referansı
+        ChessBoard& m_board; 
 };
 
 #endif // PORTALSYSTEM_HPP
