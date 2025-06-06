@@ -10,10 +10,10 @@ bool Queue::isEmpty() const {
     return front == nullptr;
 }
 
-void Queue::enqueue(const std::string& newItem) { // int yerine const std::string& alacak
+void Queue::enqueue(const std::string& newItem) { 
     Node *newNode = new Node;
     newNode -> data = newItem;
-    newNode -> next = nullptr; // Yeni düğüm her zaman en arkaya eklenir, next'i nullptr olmalı
+    newNode -> next = nullptr; 
     
     if (isEmpty()){
         front = newNode;
@@ -23,7 +23,7 @@ void Queue::enqueue(const std::string& newItem) { // int yerine const std::strin
         back -> next = newNode;
         back = newNode;
     }
-    size++; // size'ı artırmayı unutmayalım
+    size++; 
 }
 
 void Queue::dequeue() {
@@ -42,7 +42,7 @@ void Queue::dequeue() {
     }
 }
 
-std::string& Queue::getFront() { // int& yerine std::string& döndürecek
+std::string& Queue::getFront() { 
     if (isEmpty()) {
         throw std::runtime_error("Queue is empty");
     }
@@ -60,11 +60,7 @@ void Queue::clear() {
     }
 }
 
-void Queue::enterCooldownQueue(const std::string& portalId) { // int yerine const std::string& alacak
+void Queue::enterCooldownQueue(const std::string& portalId) { 
     enqueue(portalId);
 }
 
-// checkCooldowns metodu Queue.cpp'den tamamen kaldırıldı.
-/*
-void Queue::checkCooldowns() { ... }
-*/
