@@ -9,6 +9,7 @@
 #include <vector>
 #include <memory>
 
+class PortalSystem; 
 class Pieces;
 
 struct PositionHash {
@@ -31,7 +32,8 @@ class ChessBoard{
 
         Pieces* getPiece(const Position& position) const;
         void placePiece(const Position& position, std::unique_ptr<Pieces> piece);
-        //std::unique_ptr<Pieces> removePiece(const Position&  position);
+        std::unique_ptr<Pieces> removePiece(const Position&  position);
+        bool movePiece(const Position& start, const Position& end);
         
         bool checkBoundCorrect(const Position& position) const;
         void getBoard() const;

@@ -15,7 +15,7 @@ std::string Pieces::getColor() const {
 void Pieces::setCurrentPosition(const Position& position) {
     m_current_position = position;
 }
-/*
+
 const Movement& Pieces::getMovementRules() const {
     return m_movement_rules;
 }
@@ -23,7 +23,7 @@ const Movement& Pieces::getMovementRules() const {
 const SpecialAbilities& Pieces::getSpecialAbilities() const {
     return m_special_abilities;
 }
-*/
+
 bool Pieces::hasMoved() const {
     return m_has_moved;
 }

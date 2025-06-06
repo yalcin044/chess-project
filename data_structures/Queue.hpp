@@ -2,28 +2,29 @@
 #define QUEUE_HPP
 
 #include <iostream>
+#include <string> // newItem std::string olacağı için
 
 class Queue {
     public:
-        //Queue constructor
         Queue();
-        
-        //Standart queue operations 
+        ~Queue(); // Yıkıcı ekle
+
         bool isEmpty() const;
-        void enqueue(const int& newItem);
+        void enqueue(const std::string& newItem); // int yerine std::string alacak
         void dequeue();
-        int& getFront();
+        std::string& getFront(); // int& yerine std::string& döndürecek
         int getSize() const;
         void clear();
 
-        //Some cooldown operations for portals
-        void enterCooldownQueue(const int& cooldownPortal);
-        //void checkCooldowns();
+        // Portal işlemleri için, bu metot sadece portal ID'sini kaydeder.
+        // Cooldown mantığı PortalSystem'de yönetilecektir.
+        void enterCooldownQueue(const std::string& portalId); // int yerine std::string alacak
+        // void checkCooldowns(); // Bu metodu Queue'dan tamamen kaldırıyoruz, PortalSystem yönetecek
     
     private:
         struct Node {
             Node *next;
-            int data;
+            std::string data; // int yerine std::string tutacak
         };
         
         Node *front;

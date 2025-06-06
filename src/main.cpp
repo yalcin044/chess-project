@@ -1,6 +1,7 @@
-#include "ConfigReader.hpp"
+#include "../include/ConfigReader.hpp"
 #include "../chess_board/ChessBoard.hpp"
 #include "../pieces/Pieces.hpp"
+#include "../portal/PortalSystem.hpp"
 #include <iostream>
 #include <string>
 
@@ -134,5 +135,80 @@ int main(int argc, char *argv[]) {
   std::cout << "\n";
   ChessBoard chess(config);
   chess.getBoard();
+  PortalSystem portalSystem(config.portals, chess);
+  std::string line;
+  std::string command;
+  std::string from_str, to_str;
+
+  while (true) {
+      std::cout << "\nEnter command (E.g. move e2 e4, undo, quit): ";
+
+      std::getline(std::cin, line);
+      std::stringstream ss(line);
+      ss >> command; 
+
+      if (command == "quit" || command == "exit") {
+          std::cout << "Game exited." << std::endl;
+          break;
+      } else if (command == "undo") {
+          std::cout << "Undo done." << std::endl;
+          
+      } else if (command == "move") {
+          ss >> from_str >> to_str;
+
+          Position start_pos;
+          if (from_str.length() == 2) {
+              start_pos.x = from_str[0] - 'a';
+              start_pos.y = (from_str[1] - '0') - 1;
+          } else {
+              std::cerr << "WARNING: Invalid 'from' format. Using default invalid position." << std::endl;
+              start_pos = {-1, -1};
+          }
+
+          Position end_pos;
+          if (to_str.length() == 2) {
+              end_pos.x = to_str[0] - 'a';
+              end_pos.y = (to_str[1] - '0') - 1;
+          } else {
+              std::cerr << "WARNING: Invalid 'to' format. Using default invalid position." << std::endl;
+              end_pos = {-1, -1};
+          }
+          
+          if (start_pos.x == -1 || start_pos.y == -1 || end_pos.x == -1 || end_pos.y == -1) {
+              std::cout << "Invalid positions detected. Please check." << std::endl;
+              continue;
+          }
+      
+          bool move_successful = chess.movePiece(start_pos, end_pos);
+
+          if (move_successful) {
+              std::cout << "Move made successfully." << std::endl;
+              chess.getBoard(); 
+         
+              Pieces* moved_piece_check = chess.getPiece(end_pos); 
+              if (moved_piece_check != nullptr) { 
+                   std::string moved_piece_color = moved_piece_check->getColor(); 
+                  
+                  if (portalSystem.isPortalUsable(end_pos, moved_piece_color)) {
+                      std::cout << "A piece landed on a portal entry. Attempting automatic teleportation..." << std::endl;
+             
+                      if (portalSystem.teleportPiece(end_pos, moved_piece_color)) {
+                          std::cout << "Piece successfully teleported." << std::endl;
+                          chess.getBoard(); 
+                      } else {
+                          std::cout << "Portal teleportation failed." << std::endl;
+                      }
+                  }
+              }
+
+          } else {
+              std::cout << "Move failed. Please make a valid move." << std::endl;
+          }
+
+      } else {
+          std::cout << "Unknown command: '" << command << "'. Plaese use move, undo, quit or exit." << std::endl;
+      }
+  }
+
   return 0;
 }
